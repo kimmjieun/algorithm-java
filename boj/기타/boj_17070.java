@@ -1,4 +1,4 @@
-package 삼성_A형_기출_문제;
+package 기타;
 
 
 
