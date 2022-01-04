@@ -3,6 +3,7 @@ package 알고리즘기초1.자료구조1;
 import java.io.*;
 import java.util.Stack;
 
+// 9093번 단어 뒤집기
 public class boj_2_9093 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
