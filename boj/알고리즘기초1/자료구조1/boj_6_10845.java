@@ -16,36 +16,36 @@ public class boj_6_10845 {
         int b = 0;
 
         int n = Integer.parseInt(br.readLine());
-        for(int i = 0;i<n;i++){
+        for (int i = 0; i < n; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
             String S = st.nextToken();
-            switch (S){
-                case "push" :
+            switch (S) {
+                case "push":
                     int num = Integer.parseInt(st.nextToken());
                     q.add(num);
-                    b=num;
+                    b = num;
                     break;
-                case "pop" :
-                    if(q.isEmpty()){
+                case "pop":
+                    if (q.isEmpty()) {
                         sb.append("-1\n");
-                    }else{
-                        sb.append(q.remove()+"\n");
+                    } else {
+                        sb.append(q.remove() + "\n");
                     }
                     break;
-                case "size" :
-                    sb.append(q.size()+"\n");
+                case "size":
+                    sb.append(q.size() + "\n");
                     break;
-                case "empty" :
-                    if(q.isEmpty()) sb.append("1\n");
+                case "empty":
+                    if (q.isEmpty()) sb.append("1\n");
                     else sb.append("0\n");
                     break;
-                case "front" :
-                    if(q.isEmpty()) sb.append("-1\n");
-                    else sb.append(q.peek()+"\n");
+                case "front":
+                    if (q.isEmpty()) sb.append("-1\n");
+                    else sb.append(q.peek() + "\n");
                     break;
-                case "back" :
-                    if(q.isEmpty()) sb.append("-1\n");
-                    else sb.append(b+"\n");
+                case "back":
+                    if (q.isEmpty()) sb.append("-1\n");
+                    else sb.append(b + "\n");
                     break;
             }
         }

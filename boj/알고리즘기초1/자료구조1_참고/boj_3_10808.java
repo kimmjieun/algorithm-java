@@ -13,11 +13,11 @@ public class boj_3_10808 {
 
         String input = br.readLine();
 
-        for(int i =0;i<input.length();i++){
-            count[(int) input.charAt(i)-97] += 1;
+        for (int i = 0; i < input.length(); i++) {
+            count[(int) input.charAt(i) - 97] += 1;
         }
 
-        for(int i =0;i<count.length;i++){
+        for (int i = 0; i < count.length; i++) {
             sb.append(count[i]);
             sb.append(" ");
         }

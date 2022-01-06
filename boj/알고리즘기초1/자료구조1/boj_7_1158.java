@@ -7,11 +7,11 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-// 1158번 오세푸스 문제
+// 1158번 요세푸스 문제
 public class boj_7_1158 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine()," ");
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
         StringBuilder sb = new StringBuilder("<");
 
         int N = Integer.parseInt(st.nextToken());
@@ -19,12 +19,12 @@ public class boj_7_1158 {
 
         Queue<Integer> q = new LinkedList<>();
 
-        for(int i=1;i<=N;i++){
+        for (int i = 1; i <= N; i++) {
             q.add(i);
         }
 
-        while (q.size()>1){
-            for(int i = 0; i<K-1;i++){
+        while (q.size() > 1) {
+            for (int i = 0; i < K - 1; i++) {
                 q.add(q.poll());
             }
 

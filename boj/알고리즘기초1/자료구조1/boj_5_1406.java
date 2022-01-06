@@ -18,32 +18,32 @@ public class boj_5_1406 {
 
         String str = br.readLine();
 
-        for(int i = 0;i<str.length();i++){
-            left.push(str.substring(i,i+1));
+        for (int i = 0; i < str.length(); i++) {
+            left.push(str.substring(i, i + 1));
         }
 
         int N = Integer.parseInt(br.readLine());
 
-        for(int i = 0 ; i < N ; i++){
+        for (int i = 0; i < N; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
             String S = st.nextToken();
-            switch (S){
-                case "L" :
-                    if(!left.isEmpty()){
+            switch (S) {
+                case "L":
+                    if (!left.isEmpty()) {
                         right.push(left.pop());
                     }
                     break;
-                case "D" :
-                    if(!right.isEmpty()){
+                case "D":
+                    if (!right.isEmpty()) {
                         left.push(right.pop());
                     }
                     break;
-                case "B" :
-                    if(!left.isEmpty()){
+                case "B":
+                    if (!left.isEmpty()) {
                         left.pop();
                     }
                     break;
-                case "P" :
+                case "P":
                     left.push(st.nextToken());
                     break;
             }
@@ -51,11 +51,11 @@ public class boj_5_1406 {
 
 
         // right 스택으로 옮기기
-        while(!left.isEmpty())
+        while (!left.isEmpty())
             right.push(left.pop());
 
         // right 스택에 있는 값을 sb에 저장
-        while(!right.isEmpty())
+        while (!right.isEmpty())
             sb.append(right.pop());
 
         System.out.println(sb.toString());

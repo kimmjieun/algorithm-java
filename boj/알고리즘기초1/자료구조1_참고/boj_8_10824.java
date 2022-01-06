@@ -11,6 +11,6 @@ public class boj_8_10824 {
 
         String[] input = br.readLine().split(" ");
 
-        System.out.println(Long.parseLong(input[0]+input[1])+Long.parseLong(input[2]+input[3]));
+        System.out.println(Long.parseLong(input[0] + input[1]) + Long.parseLong(input[2] + input[3]));
     }
 }

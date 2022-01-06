@@ -11,21 +11,21 @@ public class boj_4_10809 {
         StringBuilder sb = new StringBuilder();
 
         int[] count = new int[26];
-        for(int i =0;i<count.length;i++){
-            count[i]=-1;
+        for (int i = 0; i < count.length; i++) {
+            count[i] = -1;
         }
 
 
         String input = br.readLine();
-        int sequence=0;
-        for(int i = 0 ;i<input.length();i++){
-            if(count[(int) input.charAt(i)-97]==-1){
-                count[(int) input.charAt(i)-97] =sequence;
+        int sequence = 0;
+        for (int i = 0; i < input.length(); i++) {
+            if (count[(int) input.charAt(i) - 97] == -1) {
+                count[(int) input.charAt(i) - 97] = sequence;
             }
             sequence++;
         }
 
-        for(int i = 0;i<count.length;i++){
+        for (int i = 0; i < count.length; i++) {
             sb.append(count[i]);
             sb.append(" ");
         }

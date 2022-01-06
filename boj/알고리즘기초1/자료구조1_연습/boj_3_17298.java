@@ -16,25 +16,25 @@ public class boj_3_17298 {
 
         int[] seq = new int[N];
 
-        StringTokenizer st = new StringTokenizer(br.readLine()," "); // 단위로 읽어드릴수 있는 라인 추가
+        StringTokenizer st = new StringTokenizer(br.readLine(), " "); // 단위로 읽어드릴수 있는 라인 추가
 
-        for(int i = 0 ; i< N;i++){
-            seq[i]=Integer.parseInt(st.nextToken());
+        for (int i = 0; i < N; i++) {
+            seq[i] = Integer.parseInt(st.nextToken());
         }
 
-        for(int i = 0;i<N;i++){
-            while(!stack.isEmpty()&&seq[stack.peek()]<seq[i]){
-                seq[stack.pop()]=seq[i];
+        for (int i = 0; i < N; i++) {
+            while (!stack.isEmpty() && seq[stack.peek()] < seq[i]) {
+                seq[stack.pop()] = seq[i];
             }
             stack.push(i);
         }
 
-        while(!stack.isEmpty()){
+        while (!stack.isEmpty()) {
             seq[stack.pop()] = -1;
         }
 
         StringBuilder sb = new StringBuilder();
-        for(int i = 0 ; i< N;i++){
+        for (int i = 0; i < N; i++) {
             sb.append(seq[i]).append(' ');
         }
 

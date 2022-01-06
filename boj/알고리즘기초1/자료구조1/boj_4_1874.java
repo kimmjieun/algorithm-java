@@ -35,7 +35,7 @@ public class boj_4_1874 {
         }
 
         // 4. 반복문을 모두 돌았지만 stack이 비어있지 않다면 스택 수열은 불가능 한 경우
-        if(!stack.isEmpty()){
+        if (!stack.isEmpty()) {
             sb.setLength(0); // 초기화
             sb.append("NO\n");
         }

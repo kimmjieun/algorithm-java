@@ -34,7 +34,7 @@ public class boj_1_17413 {
             if (flag == true) {
                 sb.append(ch);
 
-            } else if ( flag == false) {
+            } else if (flag == false) {
                 // 해당 인덱스의 i 번째 문자가 공백일 경우, 모든 원소를 pop 수행후 공백 추가
                 if (ch == ' ' || ch == '\n') {
                     while (!s.isEmpty()) {
