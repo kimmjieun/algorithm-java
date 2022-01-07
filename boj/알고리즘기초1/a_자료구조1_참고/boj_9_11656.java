@@ -1,4 +1,4 @@
-package 알고리즘기초1.자료구조1_참고;
+package 알고리즘기초1.a_자료구조1_참고;
 
 import java.io.*;
 import java.util.Arrays;
