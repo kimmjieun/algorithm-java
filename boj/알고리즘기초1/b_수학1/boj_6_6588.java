@@ -8,13 +8,13 @@ public class boj_6_6588 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        boolean[] check = new boolean[1000001];
-        check[0] = check[1] = true;
-
-        for (int i = 2; i < check.length; i++) {
-            if (!check[i]) {
-                for (int j = 2; i * j < check.length; j++) {
-                    check[i * j] = true;
+        // 소수 구하기 = 소수 false
+        boolean[] num = new boolean[1000001];
+        num[0] = num[1] = true;
+        for (int i = 2; i < num.length; i++) {
+            if (!num[i]) {
+                for (int j = i + i; j < num.length; j += i) {
+                    num[j] = true;
                 }
             }
         }
@@ -23,26 +23,20 @@ public class boj_6_6588 {
 
         while (n != 0) {
             boolean mProve = false;
-
-            for (int k = 2; k <= n; k++) {
-                if(!check[k]){
-                    if (!check[n-k]) {
-                        bw.write(n + " = " + k + " + " + (n - k));
-                        bw.newLine();
-                        mProve = true;
-                        break;
-                    }
+            for (int j = 2; j <= n / 2; j++) {
+                if (!num[j] && !num[n - j]) {
+                    bw.write(n + " = " + j + " + " + (n - j));
+                    bw.newLine();
+                    mProve = true;
+                    break;
                 }
-
             }
 
             if (!mProve) {
                 bw.write("Goldbach's conjecture is wrong.");
                 bw.newLine();
             }
-
             n = Integer.parseInt(br.readLine());
-
         }
 
         bw.flush();
