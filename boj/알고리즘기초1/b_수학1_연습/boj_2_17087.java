@@ -7,14 +7,24 @@ import java.util.StringTokenizer;
 
 // 17087번 숨바꼭질6
 public class boj_2_17087 {
+    public static int GCD(int a, int b) {
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    }
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
+        StringTokenizer st2 = new StringTokenizer(br.readLine());
+
         int N = Integer.parseInt(st.nextToken());
         int S = Integer.parseInt(st.nextToken());
 
         int[] arr = new int[N];
-        StringTokenizer st2 = new StringTokenizer(br.readLine());
         for (int i = 0; i < N; i++) {
             int a = Integer.parseInt(st2.nextToken());
             arr[i] = Math.abs(S - a);
@@ -25,12 +35,5 @@ public class boj_2_17087 {
             gcd = GCD(gcd, arr[i]);
         }
         System.out.println(gcd);
-    }
-
-    public static int GCD(int a, int b) {
-        if (b == 0) return a;
-        else {
-            return GCD(b, a % b);
-        }
     }
 }
