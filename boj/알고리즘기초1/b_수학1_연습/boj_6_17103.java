@@ -3,7 +3,6 @@ package 알고리즘기초1.b_수학1_연습;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 
 // 17103번 골드바흐 파티션
 public class boj_6_17103 {
@@ -11,31 +10,24 @@ public class boj_6_17103 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int t = Integer.parseInt(br.readLine());
 
-        ArrayList<Integer> prime = new ArrayList<>();
-        boolean[] check = new boolean[1000001];
-
-        // 소수 구하기
-        check[0] = check[1] = true;
-        for (int i = 2; i < 1000001; i++) {
-            if (check[i] == false) {
-                prime.add(i);
-                for (int j = i + i; j < 1000001; j += i) {
-                    check[j] = true;
+        // 소수 구하기 = 소수 false
+        boolean[] num = new boolean[1000001];
+        num[0] = num[1] = true;
+        for (int i = 2; i <= 1000000; i++) {
+            if (!num[i]) {
+                for (int j = i + i; j <= 1000000; j += i) {
+                    num[j] = true;
                 }
             }
         }
 
-        // n/2까지만 탐색하는 법
         while (t-- > 0) {
-            int n = Integer.parseInt(br.readLine());
-            int result = 0;
-            for (int i = 0; prime.get(i) <= n / 2; i++) {
-                // 골드바흐가 맞다면
-                if (check[n - prime.get(i)] == false) {
-                    result++;
-                }
+            int temp = Integer.parseInt(br.readLine());
+            int ans = 0;
+            for (int j = 2; j <= temp / 2; j++) {
+                if (!num[j] && !num[temp - j]) ans++;
             }
-            System.out.println(result);
+            System.out.println(ans);
         }
     }
 
