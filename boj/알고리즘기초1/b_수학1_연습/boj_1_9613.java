@@ -21,12 +21,13 @@ public class boj_1_9613 {
             for (int i = 0; i < arr.length; i++) {
                 arr[i] = Integer.parseInt((inputs[i + 1]));
             }
+
             for (int i = 0; i < arr.length - 1; i++) {
                 for (int j = i + 1; j < arr.length; j++) {
                     answer += gcd(arr[i], arr[j]);
                 }
             }
-            bw.write(answer+"\n");
+            bw.write(answer + "\n");
 
         }
         bw.flush();
@@ -35,9 +36,9 @@ public class boj_1_9613 {
 
     public static int gcd(int a, int b) {
         while (b != 0) {
-            int r = a % b;
-            a = b;
-            b = r;
+            int temp = b;
+            b = a % b;
+            a = temp;
         }
         return a;
     }
