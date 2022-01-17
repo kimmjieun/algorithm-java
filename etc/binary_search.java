@@ -1,5 +1,3 @@
-package 기타;
-
 public class binary_search {
     static int[] arr = {1, 3, 5, 7, 8, 10, 20, 35, 99, 100};
 

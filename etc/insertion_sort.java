@@ -1,5 +1,3 @@
-package 기타;
-
 public class insertion_sort {
     public static void insertion_sort(int[] a, int size) {
         for (int i = 1; i < size; i++) {
