@@ -1,4 +1,4 @@
-package boj.알고리즘기초1.a_자료구조1;
+package 알고리즘기초1.a_자료구조1;
 
 import java.io.BufferedReader;
 import java.io.IOException;

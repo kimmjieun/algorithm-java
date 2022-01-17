@@ -1,4 +1,4 @@
-package boj.알고리즘기초1.c_다이나믹프로그래밍1_연습;
+package 알고리즘기초1.c_다이나믹프로그래밍1_연습;
 
 import java.io.BufferedReader;
 import java.io.IOException;

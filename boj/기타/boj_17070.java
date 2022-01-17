@@ -1,4 +1,4 @@
-package boj.기타;
+package 기타;
 
 
 

@@ -1,4 +1,4 @@
-package boj.알고리즘기초1.b_수학1;
+package 알고리즘기초1.b_수학1;
 
 
 import java.io.BufferedReader;
