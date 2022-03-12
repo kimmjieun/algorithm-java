@@ -7,44 +7,38 @@ import java.util.StringTokenizer;
 
 public class boj_15649 {
     static StringBuilder sb = new StringBuilder();
-    static int N,M;
+    static int n, m;
     static boolean[] visit;
     static int[] arr;
 
 
     public static void main(String[] args) throws IOException {
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
         StringTokenizer st = new StringTokenizer(br.readLine());
+        n = Integer.parseInt(st.nextToken());
+        m = Integer.parseInt(st.nextToken());
 
-        N = Integer.parseInt(st.nextToken());
-        M = Integer.parseInt(st.nextToken());
-
-        visit = new boolean[N];
-        arr = new int[N];
-        dfs(N,M,0);
-        System.out.println(sb.toString());
-
-
-
+        visit = new boolean[n];
+        arr = new int[m];
+        dfs(0);
+        System.out.println(sb);
     }
 
-    private static void dfs(int N, int M, int depth) {
-        if(depth==M){
-            for(int val : arr){
-                sb.append(val).append(' ');
+    private static void dfs(int depth) {
+        if (depth == m) {
+            for (int val : arr) {
+                sb.append(val).append(" ");
             }
-            sb.append('\n');
+            sb.append("\n");
             return;
         }
 
-        for(int i=0;i<N;i++){
-            if(!visit[i]){
+        for (int i = 0; i < n; i++) {
+            if (!visit[i]) {
                 visit[i] = true;
-                arr[depth]=i+1;
-                dfs(N,M,depth+1);
-                visit[i] =false;
+                arr[depth] = i + 1;
+                dfs(depth + 1);
+                visit[i] = false;
             }
         }
     }
