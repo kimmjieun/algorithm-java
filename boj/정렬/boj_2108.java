@@ -1,5 +1,8 @@
 package 정렬;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
 
 public class boj_2108 {
@@ -9,12 +12,12 @@ public class boj_2108 {
 
     public static int getAverage() {
         // 배열을 다 합해주는 stream
-        double sum = Arrays.stream(array).sum();
+        double sum = Arrays.stream(array).sum(); // array 합 구해주는 함수
 
         double avg = (double) sum / N;
         if (avg < 0) {
             // 반올림하는 Math.round함수
-            return (int) Math.round(Math.abs(avg) * -1);
+            return (int) Math.round(Math.abs(avg) * -1); //0보다 작으면 *-1해서 양수로 바꿔주기
         } else {
             return (int) Math.round(avg);
         }
@@ -33,15 +36,16 @@ public class boj_2108 {
                 mp.put(array[i], 1);
             }
         }
-        int maxValue = Collections.max(mp.values());
+
+        int maxValue = Collections.max(mp.values()); // values 중에 가장 큰 밸류
         ArrayList<Integer> arrayList = new ArrayList<>();
         // 가장 많이 나온 값
-        for (Map.Entry<Integer, Integer> m : mp.entrySet()) {
+        for (Map.Entry<Integer, Integer> m : mp.entrySet()) { //entrySet 키와 밸류 둘다 조회할 수 있음
             if (m.getValue() == maxValue) {
                 arrayList.add(m.getKey());
             }
         }
-        Collections.sort(arrayList);
+        Collections.sort(arrayList); //Arraylist를 sort해줄 수 있다
         // 가장 많이 나온 값이 여러개일 경우 두번째로 작은 값
         if (arrayList.size() > 1)
             return arrayList.get(1);
@@ -49,15 +53,18 @@ public class boj_2108 {
             return arrayList.get(0);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
-        Scanner scan = new Scanner(System.in);
-        N = scan.nextInt();
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        N = Integer.parseInt(br.readLine());
 
         array = new int[N];
         for (int i = 0; i < N; i++) {
-            array[i] = scan.nextInt();
+            array[i] = Integer.parseInt(br.readLine());
         }
+
+
         // 산술평균
         System.out.println(getAverage());
         Arrays.sort(array);
@@ -67,7 +74,6 @@ public class boj_2108 {
         System.out.println(countFreq());
         // 범위
         System.out.println(array[N - 1] - array[0]);
-        scan.close();
     }
 
 
