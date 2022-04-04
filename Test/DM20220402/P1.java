@@ -1,7 +1,6 @@
 package DM20220402;
 
 import java.util.*;
-
 public class P1 {
     public static void solution(int[][] input) {
         int I = 0, J = 0;
@@ -28,28 +27,29 @@ public class P1 {
     }
 
     public static void solve(int N, int[][] input) {
-        HashMap<Integer, Integer> map = new HashMap<>();
-        for (int i = 0; i < input.length; i++) {
-            map.put(i + 1, input[N][i]); // 번호, 거리
+        // value 기준 정렬
+        Map<Integer,Integer> map = new HashMap<>();
+        for(int i=0;i<input.length;i++){
+            map.put(i+1, input[N][i]); //점, 거리
         }
 
-        // Map.Entry 리스트 작성
-        List<Map.Entry<Integer, Integer>> list_entries = new ArrayList<Map.Entry<Integer, Integer>>(map.entrySet());
+        // 맵을 리스트로 바꾸기
+        List<Map.Entry<Integer,Integer>> list = new ArrayList<>(map.entrySet());
 
-        // 비교함수 Comparator를 사용하여 오름차순으로 정렬
-        Collections.sort(list_entries, new Comparator<Map.Entry<Integer, Integer>>() {
-            // compare로 값을 비교
-            public int compare(Map.Entry<Integer, Integer> obj1, Map.Entry<Integer, Integer> obj2) {
-                // 오름 차순 정렬
-                return obj1.getValue().compareTo(obj2.getValue());
+        // 정렬하기
+        Collections.sort(list, new Comparator<>(){
+            @Override
+            public int compare(Map.Entry<Integer,Integer> o1, Map.Entry<Integer,Integer> o2){
+                return o1.getValue().compareTo(o2.getValue());
             }
-        });
 
-        System.out.println("오름차순 정렬");
-        // 결과 출력
-        for (Map.Entry<Integer, Integer> entry : list_entries) {
-            System.out.println(entry.getKey() + " : " + entry.getValue());
+        });
+        System.out.println("오름차순");
+        for(Map.Entry<Integer,Integer> entry :list){
+            System.out.println(entry.getKey()+" "+entry.getValue());
         }
+
     }
 }
+
 
