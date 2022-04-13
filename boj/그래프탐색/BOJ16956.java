@@ -37,7 +37,7 @@ public class BOJ16956 {
         bfs();
 
         if (flag) {
-            System.out.println("1");
+            System.out.println(1); // "1" 가능
             for (int i = 0; i < r; i++) {
                 for (int j = 0; j < c; j++) {
                     System.out.print(map[i][j]);
@@ -45,7 +45,7 @@ public class BOJ16956 {
                 System.out.println();
             }
         } else {
-            System.out.println("0");
+            System.out.println(0);
         }
 
 
