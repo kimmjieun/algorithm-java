@@ -29,17 +29,17 @@ public class BOJ10971 {
         for (int i = 0; i < n; i++) {
             visit[i] = true;
             back(i, i, 0, 0);
+            visit[i] = false; // 없어도 됨
         }
         System.out.println(answer);
 
     }
 
-    public static void back(int start, int now, int sum, int cnt) {
-        if (cnt == n - 1) { // 모든 노드 방문한 경우 n-1이 맞다 , 처음 노드는 위에서 방문했기에
-            // 마지막노드에서 맨처음 노드로 가는 비용 더하기
+    public static void back(int start, int now, int sum, int depth) {
+        if (depth == n - 1) { // 모든 노드 방문한 경우 n-1이 맞다, 처음 노드는 위에서 방문했기에
+            // 마지막 노드에서 맨 처음 노드로 가는 비용 더하기
             if (map[now][start] != 0) {
                 sum += map[now][start];
-//                if(sum<answer) answer = sum; //??? 있고 없고 차이가 뭘까
                 answer = Math.min(answer, sum);
             }
             return;
@@ -48,7 +48,7 @@ public class BOJ10971 {
         for (int i = 0; i < n; i++) {
             if (!visit[i] && map[now][i] != 0) {
                 visit[i] = true;
-                back(start, i, sum + map[now][i], cnt + 1);
+                back(start, i, sum + map[now][i], depth + 1);
                 visit[i] = false;
             }
 
