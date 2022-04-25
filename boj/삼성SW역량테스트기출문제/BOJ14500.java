@@ -36,8 +36,7 @@ public class BOJ14500 {
                 visit[i][j] = true;
                 tetromino(i, j, 1, map[i][j]);
                 visit[i][j] = false;
-                plus(i, j);
-//                check(i,j);
+                check(i,j);
             }
         }
 
@@ -63,22 +62,9 @@ public class BOJ14500 {
         }
     }
 
-    static void check(int y, int x) {
-        if (y < n - 2 && x < m - 1)
-            max = Math.max(max, map[y][x] + map[y + 1][x] + map[y + 2][x] + map[y + 1][x + 1]);
-
-        if (y < n - 2 && x > 0)
-            max = Math.max(max, map[y][x] + map[y + 1][x] + map[y + 2][x] + map[y + 1][x - 1]);
-
-        if (y < n - 1 && x < m - 2)
-            max = Math.max(max, map[y][x] + map[y][x + 1] + map[y][x + 2] + map[y + 1][x + 1]);
-
-        if (y > 0 && x < m - 2)
-            max = Math.max(max, map[y][x] + map[y][x + 1] + map[y][x + 2] + map[y - 1][x + 1]);
-    }
 
 
-    static void plus(int x, int y) {
+    static void check(int x, int y) {
 //        0과 m, n 사이
         if (x + 1 < n && y + 2 < m)
             max = Math.max(max, map[x][y] + map[x][y + 1] + map[x + 1][y + 1] + map[x][y + 2]);
