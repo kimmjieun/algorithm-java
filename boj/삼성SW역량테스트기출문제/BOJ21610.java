@@ -1,121 +1,113 @@
 package 삼성SW역량테스트기출문제;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.StringTokenizer;
-
-class Cloud {
-    int x, y;
-
-    public Cloud(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
-}
+import java.io.*;
+import java.util.*;
 
 public class BOJ21610 {
-    static int answer;
-    static int N, M;
+    static int n, m;
     static int[][] map;
-    static Cloud[] command;
-    static boolean[][] visited;
-    static Queue<Cloud> q;
     static int[] dx = {0, -1, -1, -1, 0, 1, 1, 1};
     static int[] dy = {-1, -1, 0, 1, 1, 1, 0, -1};
+    static boolean[][] visit;
+    static Queue<Cloud> clouds = new LinkedList<>();
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        N = Integer.parseInt(st.nextToken());
-        M = Integer.parseInt(st.nextToken());
 
-        command = new Cloud[M];
-        map = new int[N + 1][N + 1];
-        visited = new boolean[N + 1][N + 1];
+        StringTokenizer st;
 
-        for (int i = 1; i <= N; ++i) {
+        st = new StringTokenizer(br.readLine());
+        n = Integer.parseInt(st.nextToken());
+        m = Integer.parseInt(st.nextToken());
+
+        map = new int[n][n];
+        visit = new boolean[n][n];
+
+        for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
-            for (int j = 1; j <= N; ++j) {
+            for (int j = 0; j < n; j++) {
                 map[i][j] = Integer.parseInt(st.nextToken());
             }
         }
 
-        for (int i = 0; i < M; ++i) {
+        clouds.add(new Cloud(n - 1, 0));
+        clouds.add(new Cloud(n - 1, 1));
+        clouds.add(new Cloud(n - 2, 0));
+        clouds.add(new Cloud(n - 2, 1));
+
+        while (m-- > 0) {
             st = new StringTokenizer(br.readLine());
-            command[i] = new Cloud(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
+            int d = Integer.parseInt(st.nextToken()) - 1;
+            int s = Integer.parseInt(st.nextToken());
+
+            step12(d, s);
+            stept34();
+            step5();
         }
 
-        q = new LinkedList<>();
-        q.add(new Cloud(N, 1));
-        q.add(new Cloud(N, 2));
-        q.add(new Cloud(N - 1, 1));
-        q.add(new Cloud(N - 1, 2));
-
-        for (int i = 0; i < M; ++i) {
-            int dir = command[i].x - 1;
-            int dist = command[i].y;
-
-            answer = 0;
-            move(dir, dist);
+        int sum = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                sum += map[i][j];
+            }
         }
-        System.out.print(answer);
+        System.out.println(sum);
+
     }
 
-    static void move(int dir, int dist) {
-        //move
-        Queue<Cloud> mvd = new LinkedList<>();
-        while (!q.isEmpty()) {
-            Cloud cur = q.poll();
-
-            int mx = cur.x + (dx[dir] * dist);
-            int my = cur.y + (dy[dir] * dist);
-
-            while (!isValid(mx)) mx = change(mx);
-            while (!isValid(my)) my = change(my);
-
-            mvd.add(new Cloud(mx, my));
-            map[mx][my]++;
-            visited[mx][my] = true;
+    private static void step12(int d, int s) {
+        // 구름 이동, 구름 칸 물의 양 1 증가
+        for (Cloud cloud : clouds) {
+            cloud.x = (n + cloud.x + dx[d] * (s % n)) % n;
+            cloud.y = (n + cloud.y + dy[d] * (s % n)) % n;
+            map[cloud.x][cloud.y]++;
         }
 
-        //copy
-        while (!mvd.isEmpty()) {
-            Cloud cur = mvd.poll();
+    }
 
+    private static void stept34() {
+        // 구름제거, 물복사 버그마법 시전 (대각선에 물바구니 있으면 그만큼 증가)
+        while (!clouds.isEmpty()) {
+            Cloud cloud = clouds.poll();
             int cnt = 0;
-            for (int idx = 1; idx <= 7; idx += 2) {
-                int mx = cur.x + dx[idx];
-                int my = cur.y + dy[idx];
 
-                if (!isValid(mx) || !isValid(my) || map[mx][my] < 1) continue;
-                cnt++;
+            visit[cloud.x][cloud.y] = true;
+            for (int i = 1; i <= 7; i += 2) {
+                int nx = cloud.x + dx[i];
+                int ny = cloud.y + dy[i];
+                if (nx >= 0 && nx < n && ny >= 0 && ny < n) {
+                    if (map[nx][ny] >= 1)
+                        cnt++;
+                }
+
             }
-            map[cur.x][cur.y] += cnt;
+            map[cloud.x][cloud.y] += cnt;
+
         }
-        make();
+
     }
 
-    static void make() {
-        for (int i = 1; i <= N; ++i) {
-            for (int j = 1; j <= N; ++j) {
-                if ((map[i][j] >= 2) && !visited[i][j]) {
-                    q.add(new Cloud(i, j));
+    private static void step5() {
+        // 물의양 2이상인 모든칸 구름 생기고 물양 2줄어들기 (단, 3에서 구름이 사라진 칸 무시)
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (!visit[i][j] && map[i][j] >= 2) {
                     map[i][j] -= 2;
-                } else visited[i][j] = false;
-                answer += map[i][j];
+                    clouds.add(new Cloud(i, j));
+                }
             }
         }
+        visit = new boolean[n][n]; // 위치가 왜 여길까 ?
+
     }
 
-    static boolean isValid(int x) {
-        return x > 0 && x <= N;
-    }
+    public static class Cloud {
+        int x;
+        int y;
 
-    static int change(int x) {
-        return x < 1 ? x + N : x - N;
+        public Cloud(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
     }
 }
