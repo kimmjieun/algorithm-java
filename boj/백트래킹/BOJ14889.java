@@ -34,7 +34,8 @@ public class BOJ14889 {
 
     static void back(int idx, int depth) {
         if (depth == n/2) {
-            diff();
+//            diff();
+            diff2();
             return;
         }
 
@@ -66,5 +67,56 @@ public class BOJ14889 {
         min = Math.min(val, min);
     }
 
+    static void diff2(){
+        int[] arr = new int[n / 2];
+        int[] arr2 = new int[n / 2];
+        int j = 0, k = 0;
+        for (int i = 0; i < n; i++) {
+            if (visit[i]) {
+                arr[j++] = i;
+            } else {
+                arr2[k++] = i;
+            }
+        }
+
+        int s = start(arr);
+
+        int l = link(arr2);
+
+        min = Math.min(min, Math.abs(s - l));
+    }
+
+    private static int start(int[] start) {
+
+        int sum = 0;
+        for (int i = 0; i < start.length; i++) {
+            for (int j = 0; j < start.length; j++) {
+                if (i == j)
+                    continue;
+                int x = start[i];
+                int y = start[j];
+                sum += map[x][y];
+
+            }
+        }
+        return sum;
+    }
+
+    private static int link(int[] link) {
+
+        int sum = 0;
+        for (int i = 0; i < link.length; i++) {
+            for (int j = 0; j < link.length; j++) {
+                if (i == j)
+                    continue;
+                int x = link[i];
+                int y = link[j];
+                sum += map[x][y];
+
+            }
+        }
+
+        return sum;
+    }
 
 }
