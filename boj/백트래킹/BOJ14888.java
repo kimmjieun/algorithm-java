@@ -60,6 +60,16 @@ public class BOJ14888 {
                         back(sum / arr[idx], idx + 1);
                         break;
                 }
+//
+//                if (i == 0)
+//                    back(sum + arr[idx], idx + 1);
+//                else if (i == 1)
+//                    back(sum - arr[idx], idx + 1);
+//                else if (i == 2)
+//                    back(sum * arr[idx], idx + 1);
+//                else
+//                    back(sum / arr[idx], idx + 1);
+
                 operator[i]++;
             }
         }
