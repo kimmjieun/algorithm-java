@@ -3,6 +3,7 @@ package 해시;
 import java.util.*;
 
 public class 완주하지못한선수 {
+    // 방법 1) 해시를 사용해 푸는 방법
     public String solution(String[] participant, String[] completion) {
         String answer = "";
 
@@ -21,17 +22,22 @@ public class 완주하지못한선수 {
         }
         return null;
     }
-//    public String solution(String[] participant, String[] completion) {
-//        Arrays.sort(participant);
-//        Arrays.sort(completion);
-//        String answer = "";
-//        int i;
-//        for (i = 0; i < completion.length; i++) {
-//            if (!participant[i].equals(completion[i])) {
-//                break;
-//            }
-//        }
-//        return participant[i];
-//
-//    }
+
+    // 방법 2) 해시를 사용하지 않고 푸는 방법
+    public String solution2(String[] participant, String[] completion) {
+        String answer = "";
+        Arrays.sort(participant);
+        Arrays.sort(completion);
+        for (int i = 0; i < participant.length - 1; i++) {
+            if (!participant[i].equals(completion[i])) {
+                answer = participant[i];
+                break;
+            }
+        }
+        if (answer.equals("")) {
+            answer = participant[participant.length - 1];
+        }
+        return answer;
+    }
+
 }
