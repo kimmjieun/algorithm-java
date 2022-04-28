@@ -1,77 +1,72 @@
 package 삼성SW역량테스트기출문제;
 
-import java.io.*;
 import java.util.*;
+import java.io.*;
 
 public class BOJ3190 {
 
-    static int n, d = 0;
     static int[][] map;
-    static Map<Integer, String> moveInfo;
-    static int[] dx = {1, 0, -1, 0};
-    static int[] dy = {0, 1, 0, -1};
+    static List<int[]> snake = new ArrayList<>();
+    static int n, k, l;
+    static HashMap<Integer, String> hash = new HashMap<>();
+    static int[] dx = {0, 1, 0, -1};
+    static int[] dy = {1, 0, -1, 0}; // 동 남 서 북
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
         n = Integer.parseInt(br.readLine());
-        int k = Integer.parseInt(br.readLine());
+        k = Integer.parseInt(br.readLine());
         map = new int[n][n];
-        moveInfo = new HashMap<>();
         for (int i = 0; i < k; i++) {
             st = new StringTokenizer(br.readLine());
-
             int a = Integer.parseInt(st.nextToken()) - 1;
             int b = Integer.parseInt(st.nextToken()) - 1;
             map[a][b] = 1;
         }
 
-        int l = Integer.parseInt(br.readLine());
+        l = Integer.parseInt(br.readLine());
         for (int i = 0; i < l; i++) {
             st = new StringTokenizer(br.readLine());
-            int time = Integer.parseInt(st.nextToken());
-            String direction = st.nextToken();
-            moveInfo.put(time, direction);
+            int x = Integer.parseInt(st.nextToken());
+            String c = st.nextToken();
+            hash.put(x, c);
         }
 
         solve();
     }
 
-    static void solve() {
-        Queue<Integer> q = new LinkedList<>();
-        q.add(0);
+    public static void solve() {
+        int cx = 0, cy = 0;
         int time = 0;
-        int px = 0;
-        int py = 0;
+        int d = 0;
+        snake.add(new int[]{0, 0});
 
         while (true) {
-            int nx = px + dx[d];
-            int ny = py + dy[d];
+            // 1. 시간재기
             time++;
 
-            // 벽 부딪힘
-            if (nx < 0 || ny < 0 || nx > n - 1 || ny > n - 1) {
-                break;
-            }
+            // 2. 뱀 이동하기
+            int nx = cx + dx[d];
+            int ny = cy + dy[d];
 
-            // 몸통 부딪힘
-            if (q.contains(ny * n + nx)) {
+            // 3. 범위를 벗어나거나, 뱀 몸통 만날 때 종료
+            if (isFinish(nx, ny))
                 break;
-            }
 
-            // 안 부딪히면 뱀 이동시작
-            if (map[ny][nx] == 1) {
-                map[ny][nx] = 0;
-                q.add(ny * n + nx);
+            // 4. 사과가 있을 때 없을 때 처리
+            if (map[nx][ny] == 1) {
+                map[nx][ny] = 0;
+                snake.add(new int[]{nx, ny});
+
             } else {
-                q.add(ny * n + nx);
-                q.poll();
+                snake.add(new int[]{nx, ny});
+                snake.remove(0);
             }
 
-            // 방향 전환
-            if (moveInfo.containsKey(time)) {
-                String data = moveInfo.get(time);
-                if (data.equals("D")) {
+            // 5. 방향을 바꿔주는 시간을 만날 때 방향 변경
+            if (hash.containsKey(time)) {
+                if (hash.get(time).equals("D")) {
                     d += 1;
                     if (d == 4) d = 0;
                 } else {
@@ -79,9 +74,25 @@ public class BOJ3190 {
                     if (d == -1) d = 3;
                 }
             }
-            px = nx;
-            py = ny;
+
+            // 6. 현재값 업데이트
+            cx = nx;
+            cy = ny;
         }
         System.out.println(time);
     }
+
+    public static boolean isFinish(int nx, int ny) {
+        if (nx < 0 || ny < 0 || nx >= n || ny >= n) {
+            return true;
+        }
+
+        for (int i = 0; i < snake.size(); i++) {
+            int[] t = snake.get(i);
+            if (nx == t[0] && ny == t[1])
+                return true;
+        }
+        return false;
+    }
+
 }
