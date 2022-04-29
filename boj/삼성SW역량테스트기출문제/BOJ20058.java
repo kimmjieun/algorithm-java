@@ -1,53 +1,56 @@
 package 삼성SW역량테스트기출문제;
 
-
 import java.io.*;
 import java.util.*;
 
 public class BOJ20058 {
-    static int N, Q, land, totalIce;
-    static int[][] A;
-    static int[] L;
-    static int[] dx = {-1, 1, 0, 0};
-    static int[] dy = {0, 0, -1, 1};
-    static StringTokenizer st;
+
+    public static int n, q;
+    public static int[][] map;
+    public static int[] dx = {-1, 1, 0, 0};
+    public static int[] dy = {0, 0, -1, 1};
+    public static int land, totalIce;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
+        StringTokenizer st;
         st = new StringTokenizer(br.readLine());
-        N = Integer.parseInt(st.nextToken());
-        Q = Integer.parseInt(st.nextToken());
-        N = (int) Math.pow(2, N);
 
-        A = new int[N][N];
-        for (int i = 0; i < N; i++) {
+        n = Integer.parseInt(st.nextToken());
+        q = Integer.parseInt(st.nextToken());
+
+        n = (int) Math.pow(2, n);
+        map = new int[n][n];
+        for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
-            for (int j = 0; j < N; j++) {
-                A[i][j] = Integer.parseInt(st.nextToken());
+            for (int j = 0; j < n; j++) {
+                map[i][j] = Integer.parseInt(st.nextToken());
             }
         }
-        L = new int[Q];
+
         st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < Q; i++) {
+        int[] L = new int[q];
+        for (int i = 0; i < q; i++) {
             L[i] = Integer.parseInt(st.nextToken());
         }
 
-        for (int i = 0; i < Q; i++) {
-            A = divide(L[i]);
-            A = melt();
+        for (int i = 0; i < q; i++) {
+            // 파이어스톰 시전
+            map = divide(L[i]);// 회전
+            map = melt();// 얼음 녹이기
         }
-        findBiggest();
+        land = totalIce = 0;
+
+        biggest();
         System.out.println(totalIce);
         System.out.println(land);
     }
 
-    static int[][] divide(int L) {
-        // 배열 회전 저장 새로 하기
-        int[][] tmp = new int[N][N];
+    public static int[][] divide(int L) {
+        int[][] tmp = new int[n][n];
         L = (int) Math.pow(2, L);
-        for (int i = 0; i < N; i += L) {
-            for (int j = 0; j < N; j += L) {
+        for (int i = 0; i < n; i += L) {
+            for (int j = 0; j < n; j += L) {
                 rotate(i, j, L, tmp);
             }
         }
@@ -55,35 +58,32 @@ public class BOJ20058 {
 
     }
 
-    static void rotate(int r, int c, int L, int[][] tmp) {
+    public static void rotate(int x, int y, int L, int[][] tmp) {
         for (int i = 0; i < L; i++) {
             for (int j = 0; j < L; j++) {
-                tmp[r + j][c + L - i - 1] = A[r + i][c + j]; // 어떻게 이 식이 됐을까
+                tmp[x + i][y + j] = map[x + L - 1 - j][y + i];
             }
         }
-
     }
 
-    static int[][] melt() {
-        // 얼음 녹이기 인접한 얼음칸 3개 미만이면 양 줄이기
-
-        // A 복사본을 만들어 사용해야한다 이유는??
-        int[][] tmp = new int[N][N];
-        for (int i = 0; i < N; i++) {
-            tmp[i] = Arrays.copyOf(A[i], N);
+    public static int[][] melt() {
+        int[][] tmp = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            tmp[i] = Arrays.copyOf(map[i], n);
         }
 
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                if (A[i][j] == 0)
-                    continue;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
                 int cnt = 0;
+                if (map[i][j] == 0)
+                    continue;
                 for (int k = 0; k < 4; k++) {
                     int nx = i + dx[k];
                     int ny = j + dy[k];
-                    if (nx >= 0 && nx < N && ny >= 0 && ny < N) {
-                        if (A[nx][ny] > 0)
+                    if (nx >= 0 && nx < n && ny >= 0 && ny < n) {
+                        if (map[nx][ny] > 0) {
                             cnt++;
+                        }
                     }
                 }
                 if (cnt < 3)
@@ -91,43 +91,39 @@ public class BOJ20058 {
             }
         }
         return tmp;
-
     }
 
-    static void findBiggest() {
+    public static void biggest() {
+        Queue<int[]> q = new LinkedList<>();
+        boolean[][] visit = new boolean[n][n];
 
-        boolean[][] visit = new boolean[N][N];
-        Stack<int[]> stack = new Stack<>();
-        land = totalIce = 0;
-
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                if (A[i][j] > 0 && !visit[i][j]) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                totalIce += map[i][j];
+                if (map[i][j] > 0 && !visit[i][j]) {
+//					bfs(i,j);
+                    q.add(new int[]{i, j});
                     visit[i][j] = true;
-                    stack.push(new int[]{i, j});
-                    totalIce += A[i][j];
                     int cnt = 1;
 
-                    while (!stack.isEmpty()) {
-                        int[] tmp = stack.pop();
-                        int x = tmp[0];
-                        int y = tmp[1];
+                    while (!q.isEmpty()) {
+                        int[] t = q.poll();
+                        int tx = t[0];
+                        int ty = t[1];
 
                         for (int k = 0; k < 4; k++) {
-                            int nx = x + dx[k];
-                            int ny = y + dy[k];
-                            if (nx >= 0 && nx < N && ny >= 0 && ny < N) {
-                                if (A[nx][ny] > 0 && !visit[nx][ny]) {
+                            int nx = tx + dx[k];
+                            int ny = ty + dy[k];
+                            if (nx >= 0 && nx < n && ny >= 0 && ny < n) {
+                                if (map[nx][ny] > 0 && !visit[nx][ny]) {
                                     visit[nx][ny] = true;
-                                    stack.push(new int[]{nx, ny});
+                                    q.add(new int[]{nx, ny});
                                     cnt++;
-                                    totalIce += A[nx][ny];
                                 }
                             }
                         }
                     }
                     land = Math.max(land, cnt);
-
                 }
             }
         }
