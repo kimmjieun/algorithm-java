@@ -1,22 +1,20 @@
-package 백트래킹;
+package 백트래킹.N과M;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.Arrays;
+import java.util.StringTokenizer;
 
-public class BOJ15663 {
-    public static int n, m;
-    public static int[] arr;
-    public static int[] re;
-    public static boolean[] visit;
+public class BOJ15656 {
+    static int n, m;
+    static int[] arr;
+    static int[] result;
     static StringBuilder sb = new StringBuilder();
-    static HashSet<String> set = new HashSet<>();
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
-
         st = new StringTokenizer(br.readLine());
         n = Integer.parseInt(st.nextToken());
         m = Integer.parseInt(st.nextToken());
@@ -27,39 +25,23 @@ public class BOJ15663 {
             arr[i] = Integer.parseInt(st.nextToken());
         }
         Arrays.sort(arr);
-
-        visit = new boolean[n];
-        re = new int[m];
+        result = new int[m];
         back(0);
         System.out.println(sb);
-
-
     }
 
-    private static void back(int depth) {
+    public static void back(int depth) {
         if (m == depth) {
-            StringBuilder sb2 = new StringBuilder();
-            for (int r : re) {
-                sb2.append(r).append(" ");
+            for (int r : result) {
+                sb.append(r + " ");
             }
-            if (!set.contains(sb2.toString())) {
-                sb.append(sb2.toString()).append("\n");
-                set.add(sb2.toString());
-            }
+            sb.append("\n");
             return;
         }
 
-
         for (int i = 0; i < n; i++) {
-            if (!visit[i]) {
-                visit[i] = true;
-                re[depth] = arr[i];
-                back(depth + 1);
-                visit[i] = false;
-            }
+            result[depth] = arr[i];
+            back(depth + 1);
         }
-
-
     }
 }
-

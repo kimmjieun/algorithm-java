@@ -1,24 +1,21 @@
-package 백트래킹;
+package 백트래킹.N과M;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.StringTokenizer;
+import java.util.*;
 
-public class BOJ15665 {
-    public static int n, m;
-    public static int[] arr;
-    public static int[] re;
-    public static boolean[] visit;
+public class BOJ15663 {
+    static int n, m;
+    static int[] arr;
+    static boolean[] visit;
+    static int[] result;
     static StringBuilder sb = new StringBuilder();
-    static HashSet<String> set = new HashSet<>();
+    static ArrayList<String> list = new ArrayList<>(); // HashSet이 더 빠름
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
-
         st = new StringTokenizer(br.readLine());
         n = Integer.parseInt(st.nextToken());
         m = Integer.parseInt(st.nextToken());
@@ -29,36 +26,33 @@ public class BOJ15665 {
             arr[i] = Integer.parseInt(st.nextToken());
         }
         Arrays.sort(arr);
-
+        result = new int[m];
         visit = new boolean[n];
-        re = new int[m];
         back(0);
         System.out.println(sb);
-
-
     }
 
-    private static void back(int depth) {
+    public static void back(int depth) {
         if (m == depth) {
             StringBuilder sb2 = new StringBuilder();
-            for (int r : re) {
+            for (int r : result) {
                 sb2.append(r).append(" ");
             }
-            if (!set.contains(sb2.toString())) {
+            if (!list.contains(sb2.toString())) {
                 sb.append(sb2.toString()).append("\n");
-                set.add(sb2.toString());
+                list.add(sb2.toString());
             }
             return;
         }
 
 
         for (int i = 0; i < n; i++) {
-            visit[i] = true;
-            re[depth] = arr[i];
-            back(depth + 1);
-            visit[i] = false;
+            if (!visit[i]) {
+                visit[i] = true;
+                result[depth] = arr[i];
+                back(depth + 1);
+                visit[i] = false;
+            }
         }
-
-
     }
 }

@@ -1,4 +1,4 @@
-package 백트래킹;
+package 백트래킹.N과M;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,37 +6,31 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class BOJ15656 {
-    public static int n, m;
-    public static int[] arr;
-    public static int[] result;
-    public static StringBuilder sb = new StringBuilder();
-    public static boolean[] visit;
+public class BOJ15657 {
+    static int n, m;
+    static int[] arr;
+    static int[] result;
+    static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
-
         st = new StringTokenizer(br.readLine());
         n = Integer.parseInt(st.nextToken());
         m = Integer.parseInt(st.nextToken());
 
-        arr = new int[n];
         st = new StringTokenizer(br.readLine());
+        arr = new int[n];
         for (int i = 0; i < n; i++) {
             arr[i] = Integer.parseInt(st.nextToken());
         }
-
         Arrays.sort(arr);
-
-        visit = new boolean[n];
         result = new int[m];
-
-        back(0);
+        back(0, 0);
         System.out.println(sb);
     }
 
-    public static void back(int depth) {
+    public static void back(int depth, int start) {
         if (m == depth) {
             for (int r : result) {
                 sb.append(r + " ");
@@ -45,12 +39,9 @@ public class BOJ15656 {
             return;
         }
 
-        for (int i = 0; i < n; i++) {
-            visit[i] = true;
+        for (int i = start; i < n; i++) {
             result[depth] = arr[i];
-            back(depth + 1);
-            visit[i] = false;
+            back(depth + 1, i);
         }
     }
-
 }

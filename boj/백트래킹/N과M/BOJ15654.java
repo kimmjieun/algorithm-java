@@ -1,19 +1,14 @@
-package 백트래킹;
+package 백트래킹.N과M;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.StringTokenizer;
+import java.util.*;
+import java.io.*;
 
-public class BOJ15653 {
-
-    static StringBuilder sb = new StringBuilder();
+public class BOJ15654 {
     static int n, m;
-    static boolean[] visit;
     static int[] arr;
-    static int[] input;
-
+    static boolean[] visit;
+    static int[] result;
+    static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -23,22 +18,21 @@ public class BOJ15653 {
         m = Integer.parseInt(st.nextToken());
 
         st = new StringTokenizer(br.readLine());
-        input = new int[n];
+        arr = new int[n];
         for (int i = 0; i < n; i++) {
-            input[i] = Integer.parseInt(st.nextToken());
+            arr[i] = Integer.parseInt(st.nextToken());
         }
-        Arrays.sort(input);
-
+        Arrays.sort(arr);
+        result = new int[m];
         visit = new boolean[n];
-        arr = new int[m];
-        dfs(0);
+        back(0);
         System.out.println(sb);
     }
 
-    private static void dfs(int depth) {
-        if (depth == m) {
-            for (int val : arr) {
-                sb.append(val).append(" ");
+    public static void back(int depth) {
+        if (m == depth) {
+            for (int r : result) {
+                sb.append(r + " ");
             }
             sb.append("\n");
             return;
@@ -47,10 +41,12 @@ public class BOJ15653 {
         for (int i = 0; i < n; i++) {
             if (!visit[i]) {
                 visit[i] = true;
-                arr[depth] = input[i];
-                dfs(depth + 1);
+                result[depth] = arr[i];
+                back(depth + 1);
                 visit[i] = false;
             }
         }
     }
+
+
 }

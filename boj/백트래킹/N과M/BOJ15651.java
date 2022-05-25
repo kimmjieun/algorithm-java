@@ -1,45 +1,39 @@
-package 백트래킹;
+package 백트래킹.N과M;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class BOJ15649 {
-    static StringBuilder sb = new StringBuilder();
+public class BOJ15651 {
     static int n, m;
-    static boolean[] visit;
-    static int[] arr;
 
+    static int[] result;
+    static boolean[] visit;
+    static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         n = Integer.parseInt(st.nextToken());
         m = Integer.parseInt(st.nextToken());
-
-        visit = new boolean[n];
-        arr = new int[m];
-        dfs(0);
+        result = new int[m];
+        visit = new boolean[n + 1];
+        back(0);
         System.out.println(sb);
     }
 
-    private static void dfs(int depth) {
-        if (depth == m) {
-            for (int val : arr) {
-                sb.append(val).append(" ");
+    public static void back(int depth) {
+        if (m == depth) {
+            for (int r : result) {
+                sb.append(r + " ");
             }
             sb.append("\n");
             return;
         }
-
-        for (int i = 0; i < n; i++) {
-            if (!visit[i]) {
-                visit[i] = true;
-                arr[depth] = i + 1;
-                dfs(depth + 1);
-                visit[i] = false;
-            }
+        for (int i = 1; i <= n; i++) {
+            result[depth] = i;
+            back(depth + 1);
         }
     }
 }
