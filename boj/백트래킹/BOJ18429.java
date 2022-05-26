@@ -10,6 +10,8 @@ public class BOJ18429 {
     static int[] arr;
     static boolean[] visit;
     static int ans;
+    static int count=0;
+    static int[] result;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -29,6 +31,11 @@ public class BOJ18429 {
         ans = 0;
         back(500, 0);
         System.out.println(ans);
+
+        result = new int[n];
+        back2(0);
+        System.out.println(count);
+
     }
 
     static void back(int sum, int idx) {
@@ -46,4 +53,31 @@ public class BOJ18429 {
         }
     }
 
+    static void back2(int depth) {
+        if(n==depth) {
+            int sum=500;
+            boolean flag=true;
+            for(int r:result) {
+//				System.out.print(r+" ");
+                if(sum+r-k>=500) {
+                    sum=sum+r-k;
+                }else {
+                    flag=false;
+                    break;
+                }
+            }
+//			System.out.println();
+            if(flag) count++;
+            return;
+        }
+
+        for(int i=0;i<n;i++) {
+            if(!visit[i]) {
+                visit[i]=true;
+                result[depth]=arr[i];
+                back2(depth+1);
+                visit[i]=false;
+            }
+        }
+    }
 }
