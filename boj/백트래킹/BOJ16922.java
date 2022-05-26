@@ -3,12 +3,14 @@ package 백트래킹;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class BOJ16922 {
     static int n;
     static boolean[] visit;
     static int cnt;
     static int[] num = {1, 5, 10, 50};
+    static ArrayList<Integer> list = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -46,6 +48,33 @@ public class BOJ16922 {
 
         for (int i = start; i < 4; i++) {
             back(i, sum + num[i], count + 1);
+        }
+    }
+
+    static void back2(int depth, int start, int sum) {
+        if (n == depth) {
+            if (!list.contains(sum)) {
+                list.add(sum);
+            }
+            return;
+        }
+
+        for (int i = start; i < 4; i++) {
+            switch (i) {
+                case 0:
+                    back(depth + 1, i, sum + 1);
+                    break;
+                case 1:
+                    back(depth + 1, i, sum + 5);
+                    break;
+                case 2:
+                    back(depth + 1, i, sum + 10);
+                    break;
+                case 3:
+                    back(depth + 1, i, sum + 50);
+                    break;
+            }
+
         }
     }
 }
