@@ -47,29 +47,27 @@ public class BOJ14889 {
             }
         }
     }
-
-    static void diff() {
-        int start = 0;
-        int link = 0;
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = i; j < n; j++) {
-                if (visit[i] == true && visit[j] == true) {
-                    start += map[i][j];
-                    start += map[j][i];
-                } else if (visit[i] == false && visit[j] == false) {
-                    link += map[i][j];
-                    link += map[j][i];
+    public static void diff() {
+        int start=0;
+        int link=0;
+        for(int i=0;i<n-1;i++) {
+            for(int j=i+1;j<n;j++) {
+                if(visit[i] && visit[j]) {
+                    start+=map[i][j];
+                    start+=map[j][i];
+                }
+                if(!visit[i] && !visit[j]) {
+                    link+=map[i][j];
+                    link+=map[j][i];
                 }
             }
         }
-
-        int val = Math.abs(start - link);
-        min = Math.min(val, min);
+        min=Math.min(Math.abs(start- link),min);
     }
 
     static void diff2(){
-        int[] arr = new int[n / 2];
-        int[] arr2 = new int[n / 2];
+        int[] arr = new int[n / 2]; // visit true인 배열
+        int[] arr2 = new int[n / 2]; // visit false인 배열
         int j = 0, k = 0;
         for (int i = 0; i < n; i++) {
             if (visit[i]) {
@@ -87,7 +85,6 @@ public class BOJ14889 {
     }
 
     private static int start(int[] start) {
-
         int sum = 0;
         for (int i = 0; i < start.length; i++) {
             for (int j = 0; j < start.length; j++) {
