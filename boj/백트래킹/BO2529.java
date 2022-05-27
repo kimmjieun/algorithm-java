@@ -29,14 +29,12 @@ public class BO2529 {
 
     static void back(String num, int depth) {
         if (depth == k + 1) {
-//            min = Math.min(Integer.parseInt(num), min);
-//            max = Math.max(Integer.parseInt(num), min); 021->21로출력
             list.add(num);
             return;
         }
 
         for (int i = 0; i <= 9; i++) {
-            if (depth == 0 || !visit[i] && compare(num.charAt(num.length() - 1) - '0', i, signs[depth - 1])) {
+            if (depth == 0 || (!visit[i] && compare(num.charAt(num.length() - 1) - '0', i, signs[depth - 1]))) {
                 //처음건 비교할게없으므로 통과 || 방문안한숫자 && 비교
                 visit[i] = true;
                 back(num + i, depth + 1);
