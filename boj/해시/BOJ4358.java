@@ -16,14 +16,9 @@ public class BOJ4358 {
         }
         StringBuilder sb = new StringBuilder();
         for (String key : map.keySet()) {
-            sb.append(key + " " + String.format("%.4f", (map.get(key) * 100.0) / total));
+            sb.append(key + " " + String.format("%.4f", (double)(map.get(key) * 100) / (double)total));
             sb.append("\n");
         }
-//        StringBuilder sb = new StringBuilder();
-//        for (String tree : list) {
-//            int count = map.get(tree) * 100;
-//            sb.append(tree + " " + String.format("%.4f", (double)count / (double)total) + "\n");
-//        }
         System.out.print(sb);
     }
 }
