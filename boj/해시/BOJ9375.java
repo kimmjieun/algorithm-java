@@ -1,6 +1,5 @@
 package 해시;
 
-import java.lang.reflect.Array;
 import java.util.*;
 import java.io.*;
 
@@ -16,28 +15,15 @@ public class BOJ9375 {
                 String[] s = br.readLine().split(" ");
 
                 if (!map.containsKey(s[1])) {
-//                    ArrayList<String> list = new ArrayList<>();
-//                    list.add(s[0]);
-//                    map.put(s[1], list);
-//
                     map.put(s[1], new ArrayList<>());
                     map.get(s[1]).add(s[0]);
                 } else {
-//                    ArrayList<String> arr = map.get(s[1]);
-//                    arr.add(s[0]);
-//                    map.put(s[1], arr);
                     map.get(s[1]).add(s[0]);
                 }
             }
             int sum = 1;
             for (String key : map.keySet()) {
-//                ArrayList<String> result = map.get(key);
                 sum *= (map.get(key).size() + 1);
-//                System.out.println(key+": ");
-//                for(String l : result){
-//                    System.out.print(l+" ");
-//                }
-//                System.out.println();
             }
             System.out.println(sum - 1);
 
