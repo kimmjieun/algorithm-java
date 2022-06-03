@@ -1,4 +1,4 @@
-package 기타;
+package 재귀;
 
 import java.io.BufferedReader;
 import java.io.IOException;
