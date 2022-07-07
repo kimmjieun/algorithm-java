@@ -1,4 +1,4 @@
-package 해시;
+package 해시.링크드해시셋;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package 해시;
+package 해시.해시셋;
 
 import java.util.*;
 import java.io.*;
