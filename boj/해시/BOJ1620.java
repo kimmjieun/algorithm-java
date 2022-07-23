@@ -23,5 +23,28 @@ public class BOJ1620 {
         for (int i = 0; i < m; i++) {
             System.out.println(map.get(br.readLine()));
         }
+
+//
+//        Map<Integer, String> map = new HashMap<>();
+//
+//        for (int i = 1; i <= n; i++) {
+//            map.put(i, br.readLine());
+//        }
+//
+//        for (int i = 0; i < m; i++) {
+//            String input = br.readLine();
+//
+//            // ?? ???? numberformat -> 그냥 두개 다 넣어라
+//            if (Integer.parseInt(input) >= 1 && Integer.parseInt(input) <= n) {
+//                System.out.println(map.get(Integer.parseInt(input)));
+//            } else {
+//                for (Integer key : map.keySet()) {
+//                    if (map.get(key).equals(input)) {
+//                        System.out.println(key);
+//                        break;
+//                    }
+//                }
+//            }
+//        }
     }
 }
