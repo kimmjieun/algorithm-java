@@ -21,4 +21,24 @@ public class 같은숫자는싫어 {
 
         return answer;
     }
+    public int[] solution2(int []arr) {
+
+        Stack<Integer> s = new Stack<>();
+        s.push(arr[0]);
+        for(int i=1;i<arr.length;i++){
+            //System.out.println(s.peek()+" "+arr[i]);
+            if(s.peek()!=arr[i]){
+                s.push(arr[i]);
+            }
+        }
+
+        int[] answer = new int[s.size()];
+        int i=s.size()-1;
+        while(!s.isEmpty()){
+
+            answer[i--] =s.pop();
+        }
+
+        return answer;
+    }
 }
