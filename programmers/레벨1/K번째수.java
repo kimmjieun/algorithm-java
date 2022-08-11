@@ -1,4 +1,4 @@
-package 정렬;
+package 레벨1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
