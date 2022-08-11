@@ -1,4 +1,4 @@
-package 스택큐;
+package 코딩테스트고득점키트.스택큐;
 
 import java.util.*;
 

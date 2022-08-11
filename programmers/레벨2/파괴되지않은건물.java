@@ -1,3 +1,5 @@
+package 레벨2;
+
 import java.io.IOException;
 
 public class 파괴되지않은건물 {

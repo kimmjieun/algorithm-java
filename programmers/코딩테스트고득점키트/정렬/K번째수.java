@@ -1,4 +1,4 @@
-package 정렬;
+package 코딩테스트고득점키트.정렬;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package 해시;
+package 코딩테스트고득점키트.해시;
 
 import java.util.HashSet;
 import java.util.Set;
