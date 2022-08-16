@@ -1,9 +1,9 @@
-package 레벨2.스택큐;
+package 레벨2.다시풀문제;
 
 import java.util.Collections;
 import java.util.PriorityQueue;
 
-public class 프린터 {
+public class 프린터_스택큐 {
     public int solution(int[] priorities, int location) {
         int answer = 1; // 출력순서. 몇번째로 출력되는가 ?
 
