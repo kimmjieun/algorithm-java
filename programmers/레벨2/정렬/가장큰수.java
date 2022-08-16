@@ -1,6 +1,7 @@
-package 코딩테스트고득점키트.정렬;
+package 레벨2.정렬;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Comparator;
 
 public class 가장큰수 {
 
