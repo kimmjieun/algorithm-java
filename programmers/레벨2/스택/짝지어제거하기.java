@@ -1,4 +1,4 @@
-package 레벨2.스택큐;
+package 레벨2.스택;
 
 import java.util.Stack;
 
