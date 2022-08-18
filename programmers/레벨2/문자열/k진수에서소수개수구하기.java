@@ -1,23 +1,27 @@
-package 레벨2;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+package 레벨2.문자열;
 
 import static java.lang.Math.sqrt;
 
 public class k진수에서소수개수구하기 {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        int n = Integer.parseInt(st.nextToken());
-        int k = Integer.parseInt(st.nextToken());
+    public int solution2(int n, int k) {
+        int answer = 0;
 
-        System.out.println(solution(n, k));
+        String s = Integer.toString(n, k);
+        s = s.replaceAll("[0]{1,}", "0");//중요!!!
+
+        String[] arr = s.split("0");
+        for (String a : arr) {
+            System.out.println(a);
+            if (isPrime(Long.parseLong(a))) {
+                answer++;
+            }
+
+        }
 
 
+        return answer;
     }
+
 
     public static int solution(int n, int k) {
         int count = 0;
