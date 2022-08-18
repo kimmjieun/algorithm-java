@@ -1,6 +1,6 @@
-package 레벨2;
+package 레벨2.다시풀문제;
 
-public class 행렬테두리회전하기 {
+public class 행렬테두리회전하기_구현 {
     public int[][] map;
 
     public int[] solution(int rows, int columns, int[][] queries) {
