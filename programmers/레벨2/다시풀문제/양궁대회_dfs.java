@@ -1,6 +1,6 @@
-package 레벨2;
+package 레벨2.다시풀문제;
 
-public class 양궁대회 {
+public class 양궁대회_dfs {
 
     static int max;
     static int[] answer;
