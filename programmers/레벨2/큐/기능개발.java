@@ -1,4 +1,4 @@
-package 레벨2.스택큐;
+package 레벨2.큐;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
