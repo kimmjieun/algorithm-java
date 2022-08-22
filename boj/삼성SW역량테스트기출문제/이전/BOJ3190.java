@@ -1,4 +1,4 @@
-package 삼성SW역량테스트기출문제;
+package 삼성SW역량테스트기출문제.이전;
 
 import java.util.*;
 import java.io.*;
