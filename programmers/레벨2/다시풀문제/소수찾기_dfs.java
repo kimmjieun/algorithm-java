@@ -1,8 +1,8 @@
-package 레벨2.DFS;
+package 레벨2.다시풀문제;
 
 import java.util.*;
 
-public class 소수찾기 {
+public class 소수찾기_dfs {
     int answer = 0;
     List<Integer> list = new ArrayList<>();
     boolean[] visit;
