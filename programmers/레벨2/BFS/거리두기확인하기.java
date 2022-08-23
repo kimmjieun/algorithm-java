@@ -1,8 +1,8 @@
-package 레벨2.다시풀문제;
+package 레벨2.BFS;
 
 import java.util.*;
 
-public class 거리두기확인하기_bfs {
+public class 거리두기확인하기 {
     public int[] dx = {-1, 1, 0, 0};
     public int[] dy = {0, 0, -1, 1};
 
