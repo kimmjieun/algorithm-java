@@ -1,4 +1,4 @@
-package 레벨2.다시풀문제;
+package 레벨2.DFS;
 
 import java.util.*;
 
