@@ -1,8 +1,8 @@
-package 레벨2.DFS;
+package 레벨2.다시풀문제;
 
 import java.util.*;
 
-public class 메뉴리뉴얼 {
+public class 메뉴리뉴얼_dfs {
     HashMap<String, Integer> map;
 
     public String[] solution(String[] orders, int[] course) {

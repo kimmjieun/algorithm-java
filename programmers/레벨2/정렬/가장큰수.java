@@ -1,9 +1,9 @@
-package 레벨2.다시풀문제;
+package 레벨2.정렬;
 
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class 가장큰수_정렬 {
+public class 가장큰수 {
 
     public String solution(int[] numbers) {
         String answer = "";

@@ -1,9 +1,9 @@
-package 레벨2.다시풀문제;
+package 레벨2.BFS;
 
 
 import java.util.*;
 
-class 전력망둘로나누기_bfs {
+class 전력망둘로나누기 {
     public int[][] map;
 
 
