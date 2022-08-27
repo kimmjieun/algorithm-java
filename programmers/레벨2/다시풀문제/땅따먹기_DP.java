@@ -1,8 +1,8 @@
-package 레벨2.DP;
+package 레벨2.다시풀문제;
 
 import java.util.*;
 
-class 땅따먹기 {
+class 땅따먹기_DP {
     int solution(int[][] land) {
 
         for (int i = 1; i < land.length; i++) {
