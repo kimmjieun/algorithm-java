@@ -1,7 +1,7 @@
-package 레벨2.다시풀문제;
+package 레벨2.문자열;
 
 
-class JadenCase문자열만들기_문자열 {
+class JadenCase문자열만들기 {
     public String solution(String s) {
         String answer = "";
         // 공백 여러개여야함
