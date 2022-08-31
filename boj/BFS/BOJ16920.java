@@ -1,3 +1,5 @@
+package BFS;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -24,7 +26,7 @@ public class BOJ16920 {
             q[i] = new LinkedList<>();
         }
 
-        player = new int[p + 1];
+        player = new int[p + 1]; // 플레이어당 움직일 수 있는 칸
         st = new StringTokenizer(br.readLine());
         for (int i = 1; i <= p; i++) {
             player[i] = Integer.parseInt(st.nextToken());
@@ -56,12 +58,12 @@ public class BOJ16920 {
                 break;
             }
 
-            // 플레이어
-            for (int i = 1; i <= p; i++) {
+
+            for (int i = 1; i <= p; i++) {// 플레이어 순서대로 확장
                 for (int play = 0; play < player[i]; play++) { // 플레이어 이동할 수 있는 칸수
                     int qsize = q[i].size();
                     if (qsize == 0) break;
-                    while (qsize-- > 0) {
+                    while (qsize-- > 0) { // 큐사이즈만큼 진행
                         int[] t = q[i].poll();
                         for (int d = 0; d < 4; d++) {
                             int nx = dx[d] + t[0];
