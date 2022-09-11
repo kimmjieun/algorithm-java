@@ -1,4 +1,4 @@
-package 레벨2.다시풀문제;
+package 레벨2.구현;
 
 
 class 삼각달팽이 {
