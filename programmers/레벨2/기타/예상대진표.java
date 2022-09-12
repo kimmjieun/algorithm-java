@@ -1,6 +1,6 @@
-package 레벨2.다시풀문제;
+package 레벨2.기타;
 
-class 예상대진표_기타 {
+class 예상대진표 {
     public int solution(int n, int a, int b) {
         int answer = 0;
 
