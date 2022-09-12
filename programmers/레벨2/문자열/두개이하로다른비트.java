@@ -1,7 +1,7 @@
-package 레벨2.다시풀문제;
+package 레벨2.문자열;
 
 
-class 두개이하로다른비트_문자열 {
+class 두개이하로다른비트 {
     public long[] solution(long[] numbers) {
         long[] answer = new long[numbers.length];
         int i = 0;
