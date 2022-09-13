@@ -4,18 +4,17 @@ package 레벨2.문자열;
 class JadenCase문자열만들기 {
     public String solution(String s) {
         String answer = "";
-        // 공백 여러개여야함
+        s = s.toLowerCase();
+        answer += answer += (s.charAt(0) + "").toUpperCase();
 
-        String[] str = s.toLowerCase().split("");
-        // 이전이 공백인지 체크
-        boolean space =true;
-        for(String ss:str){
-            // space가 true면 대문자로, 아니면 그냥 그대로 사용
-            answer+=space?ss.toUpperCase():ss;
-
-            //공백이 오면 space를 true 아니면 false
-            space = ss.equals(" ") ? true: false;
+        for (int i = 1; i < s.length(); i++) {
+            if (s.charAt(i - 1) == ' ') {
+                answer += (s.charAt(i) + "").toUpperCase();
+            } else {
+                answer += s.charAt(i);
+            }
         }
+
         return answer;
     }
 }
