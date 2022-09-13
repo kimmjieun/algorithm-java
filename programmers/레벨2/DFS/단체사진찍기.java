@@ -1,9 +1,7 @@
-package 레벨2.다시풀문제;
+package 레벨2.DFS;
 
 
-import java.util.*;
-
-class 단체사진찍기_dfsolution {
+class 단체사진찍기 {
     public int answer = 0;
     public boolean visit[] = new boolean[8];
     public String[] arr = {"A", "C", "F", "J", "M", "N", "R", "T"};
